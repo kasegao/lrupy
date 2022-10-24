@@ -39,7 +39,7 @@ class LRUCache(Generic[K, V]):
 
     def put(self, key: K, val: V):
         if key in self._cache:
-            del self._cache[key]
+            self._cache.move_to_end(key, last=True)
         self._cache[key] = val
         if len(self._cache) > self.maxsize:
             self._remove()
