@@ -57,5 +57,8 @@ class LRUCache(Generic[K, V]):
         if len(self._cache) > self.maxsize:
             self._remove()
 
+    def clear(self):
+        self._cache.clear()
+
     def _remove(self):
         self._cache.popitem(last=False)
