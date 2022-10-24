@@ -2,7 +2,13 @@
 
 Simple LRU cache for Python.
 
-## Example
+## Install
+
+```bash
+pip install "git+https://github.com/kasegao/lrupy#egg=lrupy"
+```
+
+## Examples
 
 ```python
 from lrupy import LRUCache
