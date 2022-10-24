@@ -26,13 +26,26 @@ class LRUCache(Generic[K, V]):
     def __setitem__(self, key: K, val: V):
         self.put(key, val)
 
-    def get(self, key: K, f: Optional[Callable[[K], V]] = None) -> Optional[V]:
+    def get(self, key: K) -> Optional[V]:
+        val = self._cache.get(key)
+        if val is not None:
+            self._cache.move_to_end(key, last=True)
+        return val
+
+    def get_or(self, key: K, default: V) -> V:
         val = self._cache.get(key)
         if val is not None:
             self._cache.move_to_end(key, last=True)
         else:
-            if f is None:
-                return None
+            val = default
+            self.put(key, val)
+        return val
+
+    def get_or_else(self, key: K, f: Callable[[K], V]) -> V:
+        val = self._cache.get(key)
+        if val is not None:
+            self._cache.move_to_end(key, last=True)
+        else:
             val = f(key)
             self.put(key, val)
         return val

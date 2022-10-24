@@ -27,7 +27,7 @@ assert cache[1] == "1"
 assert cache[2] == "2"
 
 assert cache.get(3) is None
-assert cache.get(3, lambda i: str(i)) == "3"
+assert cache.get_or_else(3, lambda i: str(i)) == "3"
 assert cache[1] is None
 assert cache[2] == "2"
 ```

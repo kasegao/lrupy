@@ -24,6 +24,7 @@ class BenchLRU(unittest.TestCase):
 
     def test_run(self):
         n = 34
+        print(f"run fibonacci sequence benchmark (N={n})")
 
         # naive
         start = time.time()
